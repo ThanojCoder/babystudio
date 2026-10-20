@@ -1,0 +1,262 @@
+{
+  "gallery": [
+    {
+      "id": "g-1",
+      "filename": "gallery-01.jpeg",
+      "src": "/images/gallery/gallery-01.jpeg",
+      "originalName": "WhatsApp Image 2026-1-20 at 15.26.43.jpeg",
+      "title": "Milestone Shoot 1",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-2",
+      "filename": "gallery-02.jpeg",
+      "src": "/images/gallery/gallery-02.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.25 (1).jpeg",
+      "title": "Milestone Shoot 2",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-3",
+      "filename": "gallery-03.jpeg",
+      "src": "/images/gallery/gallery-03.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.25.jpeg",
+      "title": "Milestone Shoot 3",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-4",
+      "filename": "gallery-04.jpeg",
+      "src": "/images/gallery/gallery-04.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.26 (1).jpeg",
+      "title": "Milestone Shoot 4",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-5",
+      "filename": "gallery-05.jpeg",
+      "src": "/images/gallery/gallery-05.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.26 (2).jpeg",
+      "title": "Milestone Shoot 5",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-6",
+      "filename": "gallery-06.jpeg",
+      "src": "/images/gallery/gallery-06.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.26.jpeg",
+      "title": "Milestone Shoot 6",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-7",
+      "filename": "gallery-07.jpeg",
+      "src": "/images/gallery/gallery-07.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.27 (1).jpeg",
+      "title": "Milestone Shoot 7",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-8",
+      "filename": "gallery-08.jpeg",
+      "src": "/images/gallery/gallery-08.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.27.jpeg",
+      "title": "Milestone Shoot 8",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-9",
+      "filename": "gallery-09.jpeg",
+      "src": "/images/gallery/gallery-09.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.28 (1).jpeg",
+      "title": "Milestone Shoot 9",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-10",
+      "filename": "gallery-10.jpeg",
+      "src": "/images/gallery/gallery-10.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.29.jpeg",
+      "title": "Milestone Shoot 10",
+      "category": "Milestones"
+    },
+    {
+      "id": "g-11",
+      "filename": "gallery-11.jpg",
+      "src": "/images/gallery/gallery-11.jpg",
+      "originalName": "unnamed.jpg",
+      "title": "Milestone Shoot 11",
+      "category": "Milestones"
+    }
+  ],
+  "themes": [
+    {
+      "id": "t-1",
+      "filename": "theme-01.jpeg",
+      "src": "/images/themes/theme-01.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.28 (2).jpeg",
+      "title": "Custom Theme 1",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-2",
+      "filename": "theme-02.jpeg",
+      "src": "/images/themes/theme-02.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.28.jpeg",
+      "title": "Custom Theme 2",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-3",
+      "filename": "theme-03.jpeg",
+      "src": "/images/themes/theme-03.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.29 (1).jpeg",
+      "title": "Custom Theme 3",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-4",
+      "filename": "theme-04.jpeg",
+      "src": "/images/themes/theme-04.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.31.jpeg",
+      "title": "Custom Theme 4",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-5",
+      "filename": "theme-05.jpeg",
+      "src": "/images/themes/theme-05.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.32.jpeg",
+      "title": "Custom Theme 5",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-6",
+      "filename": "theme-06.jpeg",
+      "src": "/images/themes/theme-06.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.33.jpeg",
+      "title": "Custom Theme 6",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-7",
+      "filename": "theme-07.jpeg",
+      "src": "/images/themes/theme-07.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.37.jpeg",
+      "title": "Custom Theme 7",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-8",
+      "filename": "theme-08.jpeg",
+      "src": "/images/themes/theme-08.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.38 (1).jpeg",
+      "title": "Custom Theme 8",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-9",
+      "filename": "theme-09.jpeg",
+      "src": "/images/themes/theme-09.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.38.jpeg",
+      "title": "Custom Theme 9",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-10",
+      "filename": "theme-10.jpeg",
+      "src": "/images/themes/theme-10.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.39.jpeg",
+      "title": "Custom Theme 10",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-11",
+      "filename": "theme-11.jpeg",
+      "src": "/images/themes/theme-11.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.40 (1).jpeg",
+      "title": "Custom Theme 11",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-12",
+      "filename": "theme-12.jpeg",
+      "src": "/images/themes/theme-12.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.40 (2).jpeg",
+      "title": "Custom Theme 12",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-13",
+      "filename": "theme-13.jpeg",
+      "src": "/images/themes/theme-13.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.40.jpeg",
+      "title": "Custom Theme 13",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-14",
+      "filename": "theme-14.jpeg",
+      "src": "/images/themes/theme-14.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.41 (1).jpeg",
+      "title": "Custom Theme 14",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-15",
+      "filename": "theme-15.jpeg",
+      "src": "/images/themes/theme-15.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.41 (2).jpeg",
+      "title": "Custom Theme 15",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-16",
+      "filename": "theme-16.jpeg",
+      "src": "/images/themes/theme-16.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.41.jpeg",
+      "title": "Custom Theme 16",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-17",
+      "filename": "theme-17.jpeg",
+      "src": "/images/themes/theme-17.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.42 (1).jpeg",
+      "title": "Custom Theme 17",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-18",
+      "filename": "theme-18.jpeg",
+      "src": "/images/themes/theme-18.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.42 (2).jpeg",
+      "title": "Custom Theme 18",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-19",
+      "filename": "theme-19.jpeg",
+      "src": "/images/themes/theme-19.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.42 (3).jpeg",
+      "title": "Custom Theme 19",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-20",
+      "filename": "theme-20.jpeg",
+      "src": "/images/themes/theme-20.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.42.jpeg",
+      "title": "Custom Theme 20",
+      "category": "Studio Themes"
+    },
+    {
+      "id": "t-21",
+      "filename": "theme-21.jpeg",
+      "src": "/images/themes/theme-21.jpeg",
+      "originalName": "WhatsApp Image 2026-10-20 at 15.26.43.jpeg",
+      "title": "Custom Theme 21",
+      "category": "Studio Themes"
+    }
+  ]
+}

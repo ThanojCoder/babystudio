@@ -206,7 +206,7 @@ Please share available slots and next steps!`;
                       required
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 123456789"
                       className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm placeholder:text-stone-400"
                     />
                   </div>

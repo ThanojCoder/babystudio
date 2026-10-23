@@ -5,56 +5,65 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    color: #2D2424;
-    background-color: #FDFBF7;
+    color: #1C1917;
+    background-color: #FAF8F5;
   }
   
   body {
     overflow-x: hidden;
+    background-color: #FAF8F5;
+    color: #1C1917;
   }
 
   ::selection {
-    background-color: #FFAEA8;
-    color: #ffffff;
+    background-color: #E7D19B;
+    color: #1C1917;
   }
 }
 
 /* Custom Soft Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F0;
+  background: #F4EFE6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #EBDDCA;
+  background: #C59B27;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D9A70F;
+  background: #9A7718;
 }
 
-/* Glassmorphism helpers */
+/* Glassmorphism helpers for Light Theme */
 .glass-nav {
-  background: rgba(253, 251, 247, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(235, 221, 202, 0.6);
+  background: rgba(250, 248, 245, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(231, 229, 228, 0.8);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 236, 225, 0.85);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(231, 229, 228, 0.8);
 }
 
-/* Gradient subtle mesh */
-.bg-baby-radial {
+.glass-pill {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(214, 211, 209, 0.7);
+}
+
+/* Editorial background ambient mesh */
+.bg-editorial-mesh {
   background-image: 
-    radial-gradient(at 0% 0%, rgba(255, 232, 232, 0.5) 0px, transparent 50%),
-    radial-gradient(at 100% 10%, rgba(255, 249, 214, 0.45) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(240, 235, 250, 0.35) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(229, 237, 229, 0.45) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(255, 211, 211, 0.3) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(243, 234, 216, 0.45) 0px, transparent 50%),
+    radial-gradient(at 100% 15%, rgba(249, 244, 229, 0.5) 0px, transparent 50%),
+    radial-gradient(at 50% 60%, rgba(245, 245, 244, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(238, 233, 222, 0.35) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(247, 243, 237, 0.4) 0px, transparent 50%);
 }

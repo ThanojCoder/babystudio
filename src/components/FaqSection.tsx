@@ -1,57 +1,61 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, MessageCircle } from 'lucide-react';
-import { FAQS, STUDIO_INFO } from '@/data/studioData';
+import { HelpCircle, ChevronDown } from 'lucide-react';
+import { FAQS } from '@/data/studioData';
 
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleAccordion = (idx: number) => {
-    setOpenIndex(openIndex === idx ? null : idx);
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faqs" className="py-20 lg:py-28 bg-white relative">
+    <section id="faqs" className="py-24 lg:py-32 bg-[#F6F4EE] text-stone-900 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-honey-100 text-amber-800 text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-stone-200 text-stone-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
             <HelpCircle className="w-3.5 h-3.5 text-amber-600" />
             <span>Got Questions?</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-base text-neutral-600">
-            Everything you need to know about planning a joyful, stress-free photoshoot for your baby.
+          <p className="mt-4 text-base text-stone-600 font-light">
+            Everything you need to know about preparing for your session, timelines, gear, and deliverables with Snaps by Nav.
           </p>
         </div>
 
-        {/* Accordions */}
+        {/* FAQ Accordion List */}
         <div className="space-y-4">
-          {FAQS.map((faq, idx) => {
-            const isOpen = openIndex === idx;
+          {FAQS.map((faq, index) => {
+            const isOpen = openIndex === index;
             return (
               <div
-                key={idx}
-                className="rounded-2xl border border-neutral-200/80 bg-cream-50/50 overflow-hidden transition-all duration-200"
+                key={index}
+                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                  isOpen
+                    ? 'bg-white border-stone-900 shadow-md'
+                    : 'bg-white/80 border-stone-200 hover:border-stone-300'
+                }`}
               >
                 <button
-                  onClick={() => toggleAccordion(idx)}
-                  className="w-full py-5 px-6 text-left flex items-center justify-between gap-4 hover:bg-cream-100/60 transition-colors"
+                  onClick={() => toggleFaq(index)}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 font-serif font-bold text-base sm:text-lg text-stone-900 hover:text-amber-800 transition-colors"
                 >
-                  <span className="font-serif font-bold text-base sm:text-lg text-neutral-900">
-                    {faq.q}
-                  </span>
-                  <div className={`p-1.5 rounded-full bg-white text-neutral-600 shadow-sm transition-transform duration-300 ${isOpen ? 'rotate-180 text-blush-500' : ''}`}>
+                  <span>{faq.q}</span>
+                  <div className={`p-1.5 rounded-full border border-stone-200 shrink-0 text-stone-700 transition-transform duration-200 ${
+                    isOpen ? 'rotate-180 bg-stone-100' : ''
+                  }`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-sm text-neutral-600 leading-relaxed border-t border-neutral-100 bg-white animate-fadeIn">
+                  <div className="px-6 pb-6 text-sm sm:text-base text-stone-600 leading-relaxed font-light border-t border-stone-100 pt-4 animate-in fade-in">
                     {faq.a}
                   </div>
                 )}
@@ -60,24 +64,14 @@ export default function FaqSection() {
           })}
         </div>
 
-        {/* WhatsApp Help CTA */}
-        <div className="mt-12 text-center p-6 rounded-3xl bg-emerald-50 border border-emerald-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-left">
-            <h4 className="font-serif font-bold text-emerald-950 text-base">
-              Still have a specific query or want to discuss themes?
-            </h4>
-            <p className="text-xs sm:text-sm text-emerald-800">
-              Our baby photographer is available to chat directly and guide you!
-            </p>
-          </div>
+        {/* Still have questions banner */}
+        <div className="mt-12 text-center text-xs text-stone-500">
+          Still have a unique query or special request?{' '}
           <a
-            href={`https://wa.me/${STUDIO_INFO.whatsapp.replace(/[^0-9]/g, '')}?text=Hi%20Babies%20Studio%20HYD!%20I%20have%20a%20few%20questions%20regarding%20the%20photoshoot.`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-2.5 rounded-full bg-emerald-600 text-white text-xs sm:text-sm font-semibold shadow hover:bg-emerald-700 transition flex items-center gap-2"
+            href="#booking"
+            className="text-stone-900 hover:text-amber-700 font-bold underline underline-offset-4"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Chat on WhatsApp</span>
+            Chat directly with our studio desk &rarr;
           </a>
         </div>
 

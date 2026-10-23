@@ -8,51 +8,55 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        cream: {
-          50: '#FDFBF7',
-          100: '#FAF7F0',
-          200: '#F4ECE1',
-          300: '#EBDDCA',
+        stone: {
+          50: '#FAFAF9',
+          100: '#F5F5F4',
+          150: '#EFECE6',
+          200: '#E7E5E4',
+          300: '#D6D3D1',
+          400: '#A8A29E',
+          500: '#78716C',
+          600: '#57534E',
+          700: '#44403C',
+          800: '#292524',
+          850: '#201D1B',
+          900: '#1C1917',
+          950: '#0C0A09',
         },
-        blush: {
-          50: '#FFF5F5',
-          100: '#FFE8E8',
-          200: '#FFD3D3',
-          300: '#FFAEA8',
-          400: '#FF7F77',
-          500: '#F0584D',
+        gold: {
+          50: '#FDFBF5',
+          100: '#F9F4E5',
+          200: '#F1E5C4',
+          300: '#E7D19B',
+          400: '#DAB868',
+          500: '#C59B27',
+          600: '#B08225',
+          700: '#8C631A',
         },
-        honey: {
-          50: '#FFFDF0',
-          100: '#FFF9D6',
-          200: '#FFF0A3',
-          300: '#FFE266',
-          400: '#F5C92B',
-          500: '#D9A70F',
+        champagne: {
+          50: '#FDFCF9',
+          100: '#FAF6ED',
+          200: '#F3EAD8',
+          300: '#E8D7B8',
+          400: '#D9C093',
+          500: '#C29F62',
         },
-        sage: {
-          50: '#F4F7F4',
-          100: '#E5EDE5',
-          200: '#CBDBCB',
-          300: '#A4BFA4',
-          400: '#7F9F7F',
-          500: '#5F825F',
-        },
-        lavender: {
-          50: '#F9F7FD',
-          100: '#F0EBFA',
-          200: '#DFD3F4',
-          300: '#C2ACEB',
+        ivory: {
+          50: '#FEFDFB',
+          100: '#FAF8F3',
+          200: '#F4EFE6',
+          300: '#ECE3D4',
         }
       },
       fontFamily: {
-        serif: ['Georgia', 'Cambria', 'serif'],
+        serif: ['Georgia', 'Cambria', 'Playfair Display', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 10px 30px -10px rgba(0, 0, 0, 0.07)',
-        'float': '0 20px 40px -15px rgba(220, 100, 100, 0.12)',
-        'glow': '0 0 25px rgba(240, 88, 77, 0.18)',
+        'soft': '0 8px 30px -6px rgba(0, 0, 0, 0.05)',
+        'medium': '0 12px 35px -8px rgba(0, 0, 0, 0.08)',
+        'luxury': '0 20px 45px -10px rgba(184, 134, 11, 0.1)',
+        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03)',
       },
       animation: {
         'float-slow': 'float 6s ease-in-out infinite',
@@ -61,7 +65,7 @@ module.exports = {
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
         pulseSubtle: {
           '0%, 100%': { opacity: '1' },
@@ -71,4 +75,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

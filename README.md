@@ -1,56 +1,38 @@
-# Babies Studio HYD — Website & Showcase
+# Snaps by Nav — Fine Art Photography & Haute Cinematography
 
-A modern, smooth, and luxury baby photography studio web application built with **Next.js (App Router)**, **Tailwind CSS**, and **Lucide Icons**.
+A modern, sleek, and luxury photography & cinema studio web application built with **Next.js 14 (App Router)**, **Tailwind CSS**, and **Lucide Icons**.
 
-## 🌟 Features Included
+## 🌟 Available For — Five Core Disciplines
 
-1. **Magical Studio Themes Showcase (All 21 Sets)**:
-   - Interactive category filters (*Signature Sets, Fantasy & Adventure, Traditional & Culture, Cosplay & Roles, Nature & Boho*).
-   - "Choose Theme" action which automatically pre-selects the theme in the booking form.
-   - Lightbox modal with full-screen zoom and next/previous keyboard & click controls.
-   - Easily customizable titles, tags, and descriptions in `src/data/studioData.ts`.
+1. **Wedding Photography**:
+   - Royal celebrations, intimate traditional rituals, candid moments, and bridal high-fashion editorials.
+   - Handcrafted flush-mount velvet albums, golden-hour sessions, and 48-hour teaser galleries.
 
-2. **Little Stars Milestone Gallery (All 11 Real Baby Shoots)**:
-   - Categorized by Milestones, Themes in Action, Traditional, and Outdoor.
-   - Interactive likes, hover captions, and high-resolution fullscreen lightbox.
+2. **Baby Shoots**:
+   - Gentle, newborn fine-art wraps, milestone sitters (6–9 months), and 1st birthday cake smashes.
+   - 20+ ready physical theme sets, 100% medical-grade sanitization, and certified baby-led pacing.
 
-3. **The Baby-Safe Studio Experience**:
-   - 100% Medical-grade sanitization protocols.
-   - Temperature controlled (26°C warmth) environment.
-   - Baby-led pacing (unlimited feeding/nap breaks).
-   - Certified infant handling photographers.
-   - Private mother's nursing & feeding lounge.
+3. **Portfolio Shoots**:
+   - High-fashion model lookbooks, actor casting headshots, comp cards, and personal brand portraits.
+   - Magazine-grade frequency separation skin retouching and dynamic body line direction.
 
-4. **Transparent Packages & Pricing**:
-   - **Tiny Bloom** (₹7,999) — 1 Theme, 10 retouched photos.
-   - **Milestone Celebration** (₹14,999) — 2 Themes + Family Shoot + Photobook + Cake Smash option.
-   - **Royal Heritage Luxe** (₹23,999) — 3 Themes + Splash Bath + 12x12 Velvet Album + 4K Reel Video + RAW files.
-   - "Select Package" button connects directly into the booking wizard.
+4. **Concept Shoots**:
+   - Avant-garde creative productions, cinematic noir smoke, cyber neon, prism refractions, and album art.
+   - Custom moodboards, creative set styling, and atmospheric lighting.
 
-5. **Interactive Booking & WhatsApp Wizard**:
-   - Pre-selects clicked themes & packages.
-   - Real-time live summary card.
-   - Instant 1-tap WhatsApp booking message generator.
-   - Direct form submission.
-
-6. **Parent Testimonials & FAQs**:
-   - 480+ Google parent review ratings.
-   - Comprehensive answers to frequently asked baby photography questions.
-
-7. **Floating Quick WhatsApp Desk**:
-   - Easily contactable from any page section.
+5. **Cinematic Videography**:
+   - 4K 60fps cinematic wedding trailers, vertical 9:16 Instagram reels, and commercial brand films.
+   - Shot on Sony FX cinema cameras with anamorphic glass, DJI Ronin 3-axis stabilization, and DaVinci Resolve film color grading.
 
 ---
 
-## 🎨 How to Edit Theme or Gallery Names
+## 🎨 Design & Aesthetic Highlights
 
-All image data, titles, categories, pricing, and studio info are centralized in:
-📂 `src/data/studioData.ts`
-
-To change a theme name or description:
-1. Open `src/data/studioData.ts`
-2. Find `THEMES_LIST` or `GALLERY_LIST`
-3. Update `title`, `description`, or `category` as needed!
+- **Luxury Noir & Champagne Aesthetic**: Deep graphite tones paired with luminous warm gold accents, glassmorphic cards, and refined typography.
+- **Interactive "Available For" Showcase**: Deep dive into each of the 5 services with live thumbnail mosaics, deliverables checklists, and one-click booking pre-selection.
+- **Filterable Masterpiece Gallery**: Seamlessly filter between Wedding, Baby Shoots, Portfolio, Concept, and Videography stills with full-screen Lightbox zoom and keyboard navigation.
+- **Cinema Reel Feature**: Dedicated motion video spotlight showcasing 4K technical standards, audio design, and anamorphic bokeh.
+- **Interactive Booking Wizard**: Real-time service selection, dynamic fields, live summary cards, and 1-tap WhatsApp booking dispatch to Nav's studio desk.
 
 ---
 
@@ -60,8 +42,9 @@ To change a theme name or description:
 # Start development server
 npm run dev
 
-# Or build for production
+# Build for production
 npm run build
 npm run start
 ```
-The application will run on `http://localhost:3000`.
+
+Runs at `http://localhost:3000`.

@@ -1,73 +1,76 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Calendar, 
-  Sparkles, 
   MessageCircle, 
   User, 
-  Baby, 
   Phone, 
-  Heart, 
+  Mail,
+  Camera,
+  Film,
   CheckCircle2, 
   Clock, 
-  Send 
+  MapPin
 } from 'lucide-react';
-import { THEMES_LIST, PRICING_PACKAGES, STUDIO_INFO, ThemeItem, PricingPackage } from '@/data/studioData';
+import { SERVICES_LIST, STUDIO_INFO, ServiceItem, PricingPackage } from '@/data/studioData';
 
 interface BookingWizardProps {
-  selectedTheme?: ThemeItem | null;
+  selectedService?: ServiceItem | null;
   selectedPackage?: PricingPackage | null;
-  onClearSelection?: () => void;
 }
 
-export default function BookingWizard({ selectedTheme, selectedPackage }: BookingWizardProps) {
-  const [parentName, setParentName] = useState('');
+export default function BookingWizard({ selectedService, selectedPackage }: BookingWizardProps) {
+  const [chosenServiceTitle, setChosenServiceTitle] = useState(
+    selectedService?.title || SERVICES_LIST[0].title
+  );
+  const [clientName, setClientName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [babyName, setBabyName] = useState('');
-  const [babyAge, setBabyAge] = useState('1st Birthday (10-12 Months)');
-  const [preferredDate, setPreferredDate] = useState('');
-  const [preferredSlot, setPreferredSlot] = useState('Morning (10:00 AM - 12:30 PM)');
-  const [chosenThemeTitle, setChosenThemeTitle] = useState(selectedTheme?.title || THEMES_LIST[0].title);
-  const [chosenPackageId, setChosenPackageId] = useState(selectedPackage?.id || PRICING_PACKAGES[1].id);
-  const [specialNotes, setSpecialNotes] = useState('');
+  const [email, setEmail] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [locationType, setLocationType] = useState('Jubilee Hills Studio (Hyderabad)');
+  const [preferredSlot, setPreferredSlot] = useState('Morning Golden Hour (9:30 AM – 1:00 PM)');
+  const [visionNotes, setVisionNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  // Update if prop changes
-  React.useEffect(() => {
-    if (selectedTheme) {
-      setChosenThemeTitle(selectedTheme.title);
+  // Sync prop changes
+  useEffect(() => {
+    if (selectedService) {
+      setChosenServiceTitle(selectedService.title);
     }
-  }, [selectedTheme]);
+  }, [selectedService]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedPackage) {
-      setChosenPackageId(selectedPackage.id);
+      const matchingService = SERVICES_LIST.find(s => s.categoryName === selectedPackage.serviceCategory);
+      if (matchingService) {
+        setChosenServiceTitle(matchingService.title);
+      }
     }
   }, [selectedPackage]);
 
-  const activePackage = PRICING_PACKAGES.find(p => p.id === chosenPackageId) || PRICING_PACKAGES[1];
+  const activeServiceObj = SERVICES_LIST.find(s => s.title === chosenServiceTitle) || SERVICES_LIST[0];
 
   const handleWhatsAppSend = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!parentName || !phoneNumber) {
-      alert('Please provide your name and phone number so we can confirm your slot.');
+    if (!clientName || !phoneNumber) {
+      alert('Please provide your name and phone number so our studio coordinator can reach you.');
       return;
     }
 
-    const messageText = `Hi Babies Studio Hyd! 🎈
-I would like to book a baby photoshoot session:
+    const messageText = `Hi Snaps by Nav! 📸✨
+I would like to inquire about reserving a shoot:
 
-• Parent: ${parentName}
-• Phone: ${phoneNumber}
-• Baby: ${babyName || 'Little One'} (${babyAge})
-• Package: ${activePackage.name} (${activePackage.price})
-• Selected Theme: ${chosenThemeTitle}
-• Preferred Date: ${preferredDate || 'Flexible / Upcoming Weekend'}
+• Client: ${clientName}
+• Contact: ${phoneNumber}
+• Email: ${email || 'Not specified'}
+• Service: ${chosenServiceTitle}
+• Preferred Date: ${eventDate || 'Upcoming Weekend / Flexible'}
+• Preferred Location: ${locationType}
 • Preferred Slot: ${preferredSlot}
-${specialNotes ? `• Special Requests: ${specialNotes}` : ''}
+${visionNotes ? `• Creative Vision / Notes: ${visionNotes}` : ''}
 
-Please confirm availability!`;
+Please share available slots and next steps!`;
 
     const encoded = encodeURIComponent(messageText);
     const waUrl = `https://wa.me/${STUDIO_INFO.whatsapp.replace(/[^0-9]/g, '')}?text=${encoded}`;
@@ -77,7 +80,7 @@ Please confirm availability!`;
 
   const handleDirectSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!parentName || !phoneNumber) {
+    if (!clientName || !phoneNumber) {
       alert('Please fill in your name and phone number.');
       return;
     }
@@ -85,294 +88,308 @@ Please confirm availability!`;
   };
 
   return (
-    <section id="booking" className="py-20 lg:py-28 bg-white relative">
+    <section id="booking" className="py-24 lg:py-32 bg-[#FAF8F5] text-stone-900 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blush-100 text-blush-600 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Calendar className="w-3.5 h-3.5" />
-            <span>Reserve Your Date</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-stone-200 text-stone-700 text-xs font-semibold uppercase tracking-wider mb-4 shadow-sm">
+            <Calendar className="w-3.5 h-3.5 text-amber-600" />
+            <span>Direct Studio Reservation</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 tracking-tight">
-            Book Your Baby&apos;s Session
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight">
+            Reserve Your Session with Nav
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-neutral-600">
-            Tell us about your baby and dream theme. We limit to only 2 baby sessions per day to guarantee clean sanitized sets and unrushed comfort.
+          <p className="mt-4 text-base sm:text-lg text-stone-600 font-light leading-relaxed">
+            Select your desired discipline below. Our studio coordinator will review your creative brief and confirm availability within 2 hours.
           </p>
         </div>
 
-        {/* Wizard Form & Summary Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start max-w-6xl mx-auto">
+        {/* Main Booking Card Container */}
+        <div className="rounded-3xl bg-white border border-stone-200/90 shadow-xl overflow-hidden p-6 sm:p-10 lg:p-12">
           
-          {/* Form Side */}
-          <div className="lg:col-span-7 bg-cream-50 p-6 sm:p-10 rounded-3xl border border-cream-200">
-            
-            {submitted ? (
-              <div className="text-center py-12 space-y-4 animate-fadeIn">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-10 h-10" />
-                </div>
-                <h3 className="font-serif text-2xl font-bold text-neutral-900">
-                  Booking Request Received!
-                </h3>
-                <p className="text-neutral-600 text-sm max-w-md mx-auto">
-                  Thank you, <strong>{parentName}</strong>! Our studio coordinator will review your requested date for <strong>{babyName || 'your baby'}</strong> and contact you via WhatsApp / Call within 2 hours.
-                </p>
-                <div className="pt-4 flex justify-center gap-3">
-                  <button
-                    onClick={() => setSubmitted(false)}
-                    className="text-xs font-semibold text-neutral-600 underline hover:text-neutral-900"
-                  >
-                    Modify details or submit another inquiry
-                  </button>
-                </div>
+          {submitted ? (
+            <div className="py-16 text-center space-y-6 max-w-xl mx-auto">
+              <div className="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-400 flex items-center justify-center text-emerald-600 mx-auto animate-bounce">
+                <CheckCircle2 className="w-10 h-10" />
               </div>
-            ) : (
-              <form onSubmit={handleWhatsAppSend} className="space-y-6">
+              <h3 className="font-serif text-3xl font-bold text-stone-900">
+                Inquiry Successfully Dispatched!
+              </h3>
+              <p className="text-stone-600 text-sm leading-relaxed">
+                Thank you, <strong className="text-stone-900">{clientName}</strong>! Your inquiry for <strong className="text-amber-700">{chosenServiceTitle}</strong> has been logged. Our studio coordinator will connect with you shortly via WhatsApp &amp; Phone with date confirmation and moodboard guides.
+              </p>
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={`https://wa.me/${STUDIO_INFO.whatsapp.replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md flex items-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Open WhatsApp Direct</span>
+                </a>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="px-6 py-3 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold text-sm border border-stone-300"
+                >
+                  Submit Another Inquiry
+                </button>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleWhatsAppSend} className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              
+              {/* Left Column: Form Controls */}
+              <div className="lg:col-span-7 space-y-6">
                 
-                {/* Parent details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      Parent Name *
-                    </label>
-                    <div className="relative">
-                      <User className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
-                      <input
-                        type="text"
-                        required
-                        value={parentName}
-                        onChange={(e) => setParentName(e.target.value)}
-                        placeholder="e.g. Priya Sharma"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      WhatsApp / Phone *
-                    </label>
-                    <div className="relative">
-                      <Phone className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
-                      <input
-                        type="tel"
-                        required
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder="e.g. +91 98765 43210"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Baby details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      Baby&apos;s Name
-                    </label>
-                    <div className="relative">
-                      <Baby className="w-4 h-4 text-neutral-400 absolute left-3.5 top-3.5" />
-                      <input
-                        type="text"
-                        value={babyName}
-                        onChange={(e) => setBabyName(e.target.value)}
-                        placeholder="e.g. Aarav"
-                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      Milestone / Age
-                    </label>
-                    <select
-                      value={babyAge}
-                      onChange={(e) => setBabyAge(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-                    >
-                      <option>1st Birthday (10-13 Months)</option>
-                      <option>Milestone Sitter (6-9 Months)</option>
-                      <option>Toddler (2 - 3 Years)</option>
-                      <option>Newborn (7 - 25 Days)</option>
-                      <option>Maternity + Baby Combo</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Select Package */}
+                {/* 1. Service Selection */}
                 <div>
-                  <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                    Choose Package
+                  <label className="block text-xs font-bold uppercase tracking-wider text-stone-800 mb-2">
+                    1. Select Service / Topic (Available For):
                   </label>
-                  <select
-                    value={chosenPackageId}
-                    onChange={(e) => setChosenPackageId(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition font-medium"
-                  >
-                    {PRICING_PACKAGES.map((pkg) => (
-                      <option key={pkg.id} value={pkg.id}>
-                        {pkg.name} — {pkg.price} ({pkg.themesCount})
-                      </option>
-                    ))}
-                  </select>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {SERVICES_LIST.map((srv) => {
+                      const isSelected = chosenServiceTitle === srv.title;
+                      return (
+                        <button
+                          key={srv.id}
+                          type="button"
+                          onClick={() => setChosenServiceTitle(srv.title)}
+                          className={`p-3 rounded-xl border text-left transition-all duration-200 flex items-center gap-3 ${
+                            isSelected
+                              ? 'bg-stone-900 border-stone-900 text-white shadow-md'
+                              : 'bg-stone-50 border-stone-200 text-stone-800 hover:border-amber-400 hover:bg-white'
+                          }`}
+                        >
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                            isSelected ? 'bg-amber-400 text-stone-900' : 'bg-white text-amber-700 border border-stone-200'
+                          }`}>
+                            {srv.id === 'videography' ? <Film className="w-4 h-4" /> : <Camera className="w-4 h-4" />}
+                          </div>
+                          <div>
+                            <div className="font-bold text-xs">{srv.title}</div>
+                            <div className={`text-[10px] ${isSelected ? 'text-amber-300' : 'text-stone-500'}`}>
+                              {srv.startingPrice}
+                            </div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* Select Theme */}
-                <div>
-                  <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                    Primary Favorite Theme (from 21 sets)
-                  </label>
-                  <select
-                    value={chosenThemeTitle}
-                    onChange={(e) => setChosenThemeTitle(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
-                  >
-                    {THEMES_LIST.map((theme) => (
-                      <option key={theme.id} value={theme.title}>
-                        {theme.title} ({theme.category})
-                      </option>
-                    ))}
-                  </select>
-                  <p className="text-[11px] text-neutral-500 mt-1">
-                    Tip: You can change or add more themes during your pre-shoot call!
-                  </p>
-                </div>
-
-                {/* Date & Slot */}
+                {/* 2. Client Details */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      Preferred Date
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Full Name *</span>
                     </label>
                     <input
-                      type="date"
-                      value={preferredDate}
-                      onChange={(e) => setPreferredDate(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+                      type="text"
+                      required
+                      value={clientName}
+                      onChange={(e) => setClientName(e.target.value)}
+                      placeholder="e.g. Navjot Singh / Meera Varma"
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm placeholder:text-stone-400"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                      Preferred Time Slot
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <Phone className="w-3.5 h-3.5 text-amber-600" />
+                      <span>WhatsApp / Phone Number *</span>
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm placeholder:text-stone-400"
+                    />
+                  </div>
+                </div>
+
+                {/* Email & Date */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <Mail className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Email Address</span>
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="client@domain.com"
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm placeholder:text-stone-400"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Preferred Date</span>
+                    </label>
+                    <input
+                      type="date"
+                      value={eventDate}
+                      onChange={(e) => setEventDate(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Location & Slot */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Shoot Location</span>
+                    </label>
+                    <select
+                      value={locationType}
+                      onChange={(e) => setLocationType(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm"
+                    >
+                      <option value="Jubilee Hills Studio (Hyderabad)">Jubilee Hills Studio (Hyderabad)</option>
+                      <option value="Outdoor / Heritage Location in Hyderabad">Outdoor / Heritage Location in Hyderabad</option>
+                      <option value="Destination Shoot (Goa, Jaipur, Udaipur, etc.)">Destination Shoot (Goa, Jaipur, Udaipur, etc.)</option>
+                      <option value="Client Residence / Private Venue">Client Residence / Private Venue</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-700 mb-1.5 flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5 text-amber-600" />
+                      <span>Preferred Time Slot</span>
                     </label>
                     <select
                       value={preferredSlot}
                       onChange={(e) => setPreferredSlot(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+                      className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm"
                     >
-                      <option>Morning (10:00 AM - 12:30 PM)</option>
-                      <option>Afternoon (2:00 PM - 4:30 PM)</option>
-                      <option>Evening (4:30 PM - 6:30 PM)</option>
-                      <option>Flexible / Best light slot</option>
+                      <option value="Morning Golden Hour (9:30 AM – 1:00 PM)">Morning Golden Hour (9:30 AM – 1:00 PM)</option>
+                      <option value="Afternoon Studio Production (1:30 PM – 5:00 PM)">Afternoon Studio Production (1:30 PM – 5:00 PM)</option>
+                      <option value="Sunset / Evening Golden Hour (4:30 PM – 7:30 PM)">Sunset / Evening Golden Hour (4:30 PM – 7:30 PM)</option>
+                      <option value="Full Day Multi-Hour Production">Full Day Multi-Hour Production</option>
                     </select>
                   </div>
                 </div>
 
-                {/* Special Requests */}
+                {/* Special Vision Notes */}
                 <div>
-                  <label className="block text-xs font-bold text-neutral-700 mb-1.5 uppercase tracking-wider">
-                    Any Special Notes / Nap Timing
+                  <label className="block text-xs font-semibold text-stone-700 mb-1.5">
+                    Creative Vision, Baby Age, Theme Ideas, or Wedding Details:
                   </label>
                   <textarea
-                    rows={2}
-                    value={specialNotes}
-                    onChange={(e) => setSpecialNotes(e.target.value)}
-                    placeholder="e.g. Baby usually naps around 1 PM, grandparents will also attend..."
-                    className="w-full px-4 py-2.5 rounded-2xl bg-white border border-neutral-200 text-sm focus:outline-none focus:ring-2 focus:ring-blush-400 transition"
+                    rows={3}
+                    value={visionNotes}
+                    onChange={(e) => setVisionNotes(e.target.value)}
+                    placeholder="Share your ideas, outfit requirements, references, or specific deliverables..."
+                    className="w-full px-4 py-3 rounded-xl bg-stone-50 border border-stone-200 focus:border-stone-900 focus:bg-white focus:outline-none text-stone-900 text-sm placeholder:text-stone-400 resize-none"
                   />
                 </div>
 
                 {/* Submit Buttons */}
-                <div className="space-y-3 pt-2">
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
                   <button
                     type="submit"
-                    className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                    className="w-full sm:flex-1 py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    <MessageCircle className="w-5 h-5" />
-                    <span>Send Booking Enquiry via WhatsApp</span>
+                    <MessageCircle className="w-4 h-4 text-white" />
+                    <span>Send Inquiry via WhatsApp</span>
                   </button>
 
                   <button
                     type="button"
                     onClick={handleDirectSubmit}
-                    className="w-full py-3 px-6 rounded-2xl bg-neutral-900 text-white font-medium text-xs hover:bg-neutral-800 transition flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto py-4 px-6 rounded-full bg-stone-900 hover:bg-stone-800 text-white font-semibold text-sm transition-all duration-200 shadow-sm"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>Submit Request (We will call you)</span>
+                    Submit Online
                   </button>
                 </div>
 
-              </form>
-            )}
-          </div>
-
-          {/* Booking Summary Card */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 rounded-3xl bg-neutral-900 text-white shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-blush-500/20 rounded-full blur-2xl pointer-events-none" />
-
-              <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400">
-                Live Booking Summary
-              </span>
-              <h3 className="font-serif text-2xl font-bold mt-1 mb-6">
-                {activePackage.name}
-              </h3>
-
-              <div className="space-y-4 text-xs sm:text-sm text-neutral-300 border-t border-neutral-800 pt-5">
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Package Rate:</span>
-                  <span className="font-bold text-white font-serif text-lg">{activePackage.price}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Session Allowance:</span>
-                  <span className="text-white">{activePackage.themesCount}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Selected Theme:</span>
-                  <span className="text-amber-300 font-medium text-right max-w-[200px] truncate">{chosenThemeTitle}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Duration:</span>
-                  <span className="text-white">{activePackage.duration}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-neutral-400">Props & Wardrobe:</span>
-                  <span className="text-emerald-400 font-semibold">100% Included Free</span>
-                </div>
-              </div>
-
-              <div className="mt-8 p-4 rounded-2xl bg-white/5 border border-white/10 text-xs text-neutral-300 flex items-start gap-3">
-                <Sparkles className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <p>
-                  Zero cancellation fee if your baby falls sick on shoot day. We happily reschedule to any available date!
+                <p className="text-[11px] text-stone-500 text-center sm:text-left">
+                  🔒 We respect your privacy. No spam. You will receive a direct, personal response from Nav &amp; the studio team.
                 </p>
+
               </div>
 
-              <div className="mt-6 pt-6 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
-                <span>Direct Studio Desk:</span>
-                <a href={`tel:${STUDIO_INFO.phone}`} className="text-white font-bold hover:underline">
-                  {STUDIO_INFO.phone}
-                </a>
-              </div>
-            </div>
+              {/* Right Column: Dynamic Summary & Studio Assurance */}
+              <div className="lg:col-span-5 space-y-6">
+                
+                {/* Live Selection Card */}
+                <div className="p-6 rounded-2xl bg-stone-50 border border-stone-200 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-stone-200">
+                    <span className="text-xs uppercase font-bold text-stone-800 tracking-wider">
+                      Selected Service Brief
+                    </span>
+                    <span className="text-xs font-semibold text-emerald-800 bg-emerald-100 border border-emerald-200 px-2.5 py-0.5 rounded-full">
+                      Available
+                    </span>
+                  </div>
 
-            {/* Quick Studio Promise */}
-            <div className="p-6 rounded-3xl bg-cream-100 border border-cream-200 text-xs text-neutral-700 space-y-2">
-              <div className="font-bold text-neutral-900 flex items-center gap-1.5">
-                <Heart className="w-4 h-4 text-rose-500 fill-rose-500" />
-                <span>Our Happiness Guarantee</span>
+                  <div>
+                    <h4 className="font-serif text-xl font-bold text-stone-900">
+                      {activeServiceObj.title}
+                    </h4>
+                    <p className="text-xs text-stone-600 font-medium mt-0.5">
+                      {activeServiceObj.tagline}
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-white border border-stone-200 space-y-1.5 text-xs text-stone-700 shadow-sm">
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Starting Price:</span>
+                      <span className="font-bold text-amber-700">{activeServiceObj.startingPrice}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Session Pacing:</span>
+                      <span className="text-stone-900 font-medium">{activeServiceObj.duration}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-stone-500">Optics:</span>
+                      <span className="text-stone-900 font-medium truncate max-w-[170px]">{activeServiceObj.cameraGear.split('•')[0]}</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-stone-600 mb-2">
+                      Included With This Session:
+                    </p>
+                    <ul className="space-y-1.5 text-xs text-stone-700">
+                      {activeServiceObj.deliverables.slice(0, 4).map((del, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                          <span>{del}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+
+                {/* Studio Contact Pill */}
+                <div className="p-6 rounded-2xl bg-white border border-stone-200 space-y-3 text-xs text-stone-600 shadow-sm">
+                  <div className="font-serif font-bold text-base text-stone-900">
+                    Need Immediate Assistance?
+                  </div>
+                  <p className="text-stone-600 leading-relaxed">
+                    Call our studio coordinator directly at <strong className="text-stone-900">{STUDIO_INFO.phone}</strong> or visit our Jubilee Hills studio for a coffee and portfolio viewing.
+                  </p>
+                  <div className="pt-1 flex items-center gap-2 text-stone-700 font-semibold">
+                    <Clock className="w-3.5 h-3.5 text-amber-600" />
+                    <span>Studio Hours: {STUDIO_INFO.hours}</span>
+                  </div>
+                </div>
+
               </div>
-              <p className="leading-relaxed">
-                If your baby is having an unusually rough day and won&apos;t settle despite calm breaks, we don&apos;t force it. We offer a complimentary return session to complete the shoot.
-              </p>
-            </div>
-          </div>
+
+            </form>
+          )}
 
         </div>
 
